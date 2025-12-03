@@ -1,0 +1,19 @@
+{
+  "company_info": {
+    "name": "TechVarejo Soluções S.A.",
+    "tax_id": "12.345.678/0001-90",
+    "sector": "Varejo Eletrônico"
+  },
+  "financials": {
+    "current_year": {
+      "revenue": 1500000.00,
+      "net_income": 50000.00,
+      "current_assets": 200000.00,
+      "current_liabilities": 250000.00
+    },
+    "previous_year": {
+      "revenue": 1000000.00,
+      "net_income": 100000.00
+    }
+  }
+}

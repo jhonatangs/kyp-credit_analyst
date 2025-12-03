@@ -1,0 +1,17 @@
+{
+    "company_info": {
+        "name": "Varejo Antigo S.A.",
+        "sector": "Varejo Físico"
+    },
+    "financials": {
+        "current_year": {
+            "revenue": 800000.00,
+            "net_income": -50000.00,
+            "current_assets": 50000.00,
+            "current_liabilities": 400000.00
+        },
+        "previous_year": {
+            "revenue": 950000.00
+        }
+    }
+}

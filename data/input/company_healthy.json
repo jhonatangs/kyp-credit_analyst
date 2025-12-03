@@ -1,0 +1,17 @@
+{
+    "company_info": {
+        "name": "AgroTech Export Ltda",
+        "sector": "Agronegócio"
+    },
+    "financials": {
+        "current_year": {
+            "revenue": 5000000.00,
+            "net_income": 1200000.00,
+            "current_assets": 3000000.00,
+            "current_liabilities": 1500000.00
+        },
+        "previous_year": {
+            "revenue": 4500000.00
+        }
+    }
+}
