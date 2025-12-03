@@ -1,0 +1,10 @@
+# Segurança e Chaves
+.env
+*.key
+
+# Python e Cache
+__pycache__/
+*.pyc
+.pytest_cache/
+venv/
+.venv/
