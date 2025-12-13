@@ -33,6 +33,26 @@ class CreditReport(BaseModel):
     )
 
 
+# revenue: receita bruta (Todo o dinheiro que entrou no caixa fruto da venda de produtos ou serviços antes de descontar qualquer coisa.)
+# net_income: lucro líquido (O que sobrou no bolso do acionista depois de pagar TUDO (custos de mercadoria, aluguel, luz, funcionários, impostos, juros de dívida).)
+# current_assets: ativos circulantes (Tudo o que a empresa tem de valor que já é dinheiro ou vai virar dinheiro em curto prazo (menos de 12 meses).)
+# current_liabilities: passivos circulantes (Todas as obrigações e dívidas que a empresa precisa pagar em curto prazo (menos de 12 meses).)
+
+# liquidity (liquidez corrente) = current_assets / current_liabilities
+# para cada R$ 1,00 de dívida, quantos reais eu tenho?
+# > 1.0 = saudável (Tenho mais dinheiro do que dívidas)
+# < 1.0 = risco iminente de insolvência (Devo mais do que tenho)
+
+# margin (margem líquida) = (net_income / revenue) * 100
+# De cada R$ 100,00 que a empresa vende, quantos reais sobram de lucro limpo?
+# Quanto maior, melhor. Indica que a empresa é eficiente.
+# Se for decrescente (ano passado era 10%, esse ano é 5%), significa que a empresa está ficando "gorda/ineficiente" ou que os custos explodiram.
+# Se for negativa, a empresa está operando no prejuízo.
+
+# growth (crescimento da receita) = ((current_year.revenue - previous_year.revenue) / previous_year.revenue) * 100
+# A velocidade de expansão da empresa.
+
+
 # --- 2. MATH ENGINE (Deterministic) ---
 def calculate_financial_ratios(data: dict) -> dict:
     curr = data["financials"]["current_year"]
@@ -74,9 +94,9 @@ def process_company_data(company_data: dict) -> dict:
         """
         You are a Senior Credit Analyst at CERC. 
         Analyze the data below to validate "Duplicata Escritural" operations.
-    
+
         COMPANY: {name} | SECTOR: {sector}
-    
+
         FINANCIAL INDICATORS (Numeric Facts):
         - Current Liquidity: {liquidity} (Below 1.0 indicates imminent insolvency risk)
         - Net Margin: {margin}%
@@ -86,11 +106,11 @@ def process_company_data(company_data: dict) -> dict:
         1. If Liquidity < 1.0, risk is HIGH, even if the company is growing (Cash flow break).
         2. Negative Margin (Loss) requires rejection or strong guarantees.
         3. Prioritize the safety of the market infrastructure.
-       
-        Output the response in the requested format. 
+
+        Output the response in the requested format.
         The 'summary' and 'rationale' text must be written in Portuguese.
         The 'final_verdict' must be one of: APPROVE, DENY, WITH_CONDITIONS.
-       
+
         {format_instructions}
         """
     )
