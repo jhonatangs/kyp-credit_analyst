@@ -13,11 +13,11 @@ from pydantic import BaseModel, Field
 # Load environment variables
 load_dotenv()
 
-# AI Configuration (Groq - Llama 3)
+# AI Configuration (Groq - Llama 3.3 70B Versatile)
 llm = ChatGroq(temperature=0.0, model_name="llama-3.3-70b-versatile")
 
 
-# --- 1. DATA MODELS (English Fields) ---
+# --- 1. DATA MODELS ---
 class CreditReport(BaseModel):
     summary: str = Field(
         description="Executive summary of the company situation (in Portuguese)"
@@ -70,29 +70,27 @@ def process_company_data(company_data: dict) -> dict:
     # Step B: AI Context Analysis
     parser = PydanticOutputParser(pydantic_object=CreditReport)
 
-    # Prompt kept in Portuguese so the output TEXT is readable by Brazilian analysts,
-    # but the STRUCTURE (JSON keys) will follow the Pydantic English model.
     prompt = ChatPromptTemplate.from_template(
         """
         You are a Senior Credit Analyst at CERC. 
         Analyze the data below to validate "Duplicata Escritural" operations.
-        
+    
         COMPANY: {name} | SECTOR: {sector}
-        
+    
         FINANCIAL INDICATORS (Numeric Facts):
         - Current Liquidity: {liquidity} (Below 1.0 indicates imminent insolvency risk)
         - Net Margin: {margin}%
         - Revenue Growth: {growth}%
-        
+
         RISK GUIDELINES:
         1. If Liquidity < 1.0, risk is HIGH, even if the company is growing (Cash flow break).
         2. Negative Margin (Loss) requires rejection or strong guarantees.
         3. Prioritize the safety of the market infrastructure.
-        
+       
         Output the response in the requested format. 
         The 'summary' and 'rationale' text must be written in Portuguese.
         The 'final_verdict' must be one of: APPROVE, DENY, WITH_CONDITIONS.
-        
+       
         {format_instructions}
         """
     )
@@ -111,7 +109,7 @@ def process_company_data(company_data: dict) -> dict:
         }
     )
 
-    # Return flat dictionary (English Keys)
+    # Return flat dictionary
     return {
         "analysis_date": datetime.now().strftime("%Y-%m-%d %H:%M"),
         "company_name": name,
