@@ -139,6 +139,7 @@ def process_company_data(company_data: dict) -> dict:
         "risk_score": result.risk_score,
         "final_verdict": result.final_verdict,
         "rationale": result.rationale,
+        "summary": result.summary,
     }
 
 
