@@ -10,8 +10,6 @@
 ---
 
 ## 🎯 Contexto de Negócio
-A nova regulamentação das duplicatas escriturais exigirá que infraestruturas de mercado (como a CERC) processem um volume massivo de validações de crédito. O método manual ("carpintaria intelectual") não escala.
-
 Este projeto implementa um **Pipeline de Engenharia de Dados** que automatiza o processo de **KYP (Know Your Partner)**, analisando a saúde financeira das empresas emissoras para mitigar riscos sistêmicos.
 
 ## 🏗 Arquitetura da Solução
